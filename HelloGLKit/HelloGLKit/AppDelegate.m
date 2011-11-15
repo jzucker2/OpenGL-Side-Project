@@ -8,15 +8,13 @@
 
 #import "AppDelegate.h"
 
-@implementation AppDelegate {
-    float _curRed;
-    BOOL _increasing;
-}
+@implementation AppDelegate
 
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /*
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
@@ -44,6 +42,7 @@
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+     */
     return YES;
 }
 
@@ -84,61 +83,6 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-}
-
-#pragma mark - GLKViewDelegate
-
-- (void) glkView:(GLKView *)view drawInRect:(CGRect)rect
-{
-    /*
-    if (_increasing) {
-        _curRed += 0.01;
-    }
-    else
-    {
-        _curRed -= 0.01;
-    }
-    if (_curRed >= 1.0) {
-        _curRed = 1.0;
-        _increasing = NO;
-    }
-    if (_curRed <= 0.0) {
-        _curRed = 0.0;
-        _increasing = YES;
-    }
-     */
-    
-    glClearColor(_curRed, 0.0, 0.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-}
-
-/*
-- (void) render:(CADisplayLink *) displayLink
-{
-    GLKView *view = [self.window.subviews objectAtIndex:0];
-    [view display];
-}
- */
-
-#pragma mark - GLKViewControllerDelegate
-
-- (void) glkViewControllerUpdate:(GLKViewController *)controller
-{
-    if (_increasing) {
-        _curRed += 1.0 * controller.timeSinceLastUpdate;
-    }
-    else
-    {
-        _curRed -= 1.0 *controller.timeSinceLastUpdate;
-    }
-    if (_curRed >= 1.0) {
-        _curRed = 1.0;
-        _increasing = NO;
-    }
-    if (_curRed <= 0.0) {
-        _curRed = 0.0;
-        _increasing = YES;
-    }
 }
 
 @end
