@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, GLKViewDelegate>
 

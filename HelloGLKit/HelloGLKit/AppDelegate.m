@@ -8,7 +8,10 @@
 
 #import "AppDelegate.h"
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    float _curRed;
+    BOOL _increasing;
+}
 
 @synthesize window = _window;
 
@@ -18,10 +21,17 @@
     // Override point for customization after application launch.
     
     // customization for OpenGL
+    _increasing = YES;
+    _curRed = 0.0;
+    
+    CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
+    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
     EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     GLKView *view = [[GLKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     view.context = context;
     view.delegate = self;
+    view.enableSetNeedsDisplay = NO;
     [self.window addSubview:view];
     
     self.window.backgroundColor = [UIColor whiteColor];
@@ -72,8 +82,30 @@
 
 - (void) glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    glClearColor(1.0, 0.0, 0.0, 1.0);
+    if (_increasing) {
+        _curRed += 0.01;
+    }
+    else
+    {
+        _curRed -= 0.01;
+    }
+    if (_curRed >= 1.0) {
+        _curRed = 1.0;
+        _increasing = NO;
+    }
+    if (_curRed <= 0.0) {
+        _curRed = 0.0;
+        _increasing = YES;
+    }
+    
+    glClearColor(_curRed, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
+}
+
+- (void) render:(CADisplayLink *) displayLink
+{
+    GLKView *view = [self.window.subviews objectAtIndex:0];
+    [view display];
 }
 
 @end
