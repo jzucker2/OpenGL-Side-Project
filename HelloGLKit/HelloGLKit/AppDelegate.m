@@ -21,18 +21,26 @@
     // Override point for customization after application launch.
     
     // customization for OpenGL
-    _increasing = YES;
-    _curRed = 0.0;
-    
-    CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    
     EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     GLKView *view = [[GLKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     view.context = context;
     view.delegate = self;
-    view.enableSetNeedsDisplay = NO;
-    [self.window addSubview:view];
+    
+    _increasing = YES;
+    _curRed = 0.0;
+    
+    //CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
+    //[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
+    
+    //view.enableSetNeedsDisplay = NO;
+    //[self.window addSubview:view];
+    
+    GLKViewController *viewController = [[GLKViewController alloc] initWithNibName:nil bundle:nil];
+    viewController.view = view;
+    viewController.delegate = self;
+    viewController.preferredFramesPerSecond = 60;
+    self.window.rootViewController = viewController;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -82,6 +90,7 @@
 
 - (void) glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
+    /*
     if (_increasing) {
         _curRed += 0.01;
     }
@@ -97,15 +106,39 @@
         _curRed = 0.0;
         _increasing = YES;
     }
+     */
     
     glClearColor(_curRed, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
+/*
 - (void) render:(CADisplayLink *) displayLink
 {
     GLKView *view = [self.window.subviews objectAtIndex:0];
     [view display];
+}
+ */
+
+#pragma mark - GLKViewControllerDelegate
+
+- (void) glkViewControllerUpdate:(GLKViewController *)controller
+{
+    if (_increasing) {
+        _curRed += 1.0 * controller.timeSinceLastUpdate;
+    }
+    else
+    {
+        _curRed -= 1.0 *controller.timeSinceLastUpdate;
+    }
+    if (_curRed >= 1.0) {
+        _curRed = 1.0;
+        _increasing = NO;
+    }
+    if (_curRed <= 0.0) {
+        _curRed = 0.0;
+        _increasing = YES;
+    }
 }
 
 @end
