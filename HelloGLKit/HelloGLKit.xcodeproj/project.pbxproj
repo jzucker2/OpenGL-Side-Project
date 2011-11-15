@@ -13,6 +13,9 @@
 		3362DFCC1472FC1200C57915 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3362DFCA1472FC1200C57915 /* InfoPlist.strings */; };
 		3362DFCE1472FC1200C57915 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3362DFCD1472FC1200C57915 /* main.m */; };
 		3362DFD21472FC1200C57915 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3362DFD11472FC1200C57915 /* AppDelegate.m */; };
+		3362DFD91472FD8500C57915 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362DFD81472FD8500C57915 /* QuartzCore.framework */; };
+		3362DFDB1472FD8E00C57915 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362DFDA1472FD8E00C57915 /* OpenGLES.framework */; };
+		3362DFDD1472FD9500C57915 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362DFDC1472FD9500C57915 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		3362DFCF1472FC1200C57915 /* HelloGLKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HelloGLKit-Prefix.pch"; sourceTree = "<group>"; };
 		3362DFD01472FC1200C57915 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3362DFD11472FC1200C57915 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3362DFD81472FD8500C57915 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3362DFDA1472FD8E00C57915 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3362DFDC1472FD9500C57915 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +39,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3362DFDD1472FD9500C57915 /* GLKit.framework in Frameworks */,
+				3362DFDB1472FD8E00C57915 /* OpenGLES.framework in Frameworks */,
+				3362DFD91472FD8500C57915 /* QuartzCore.framework in Frameworks */,
 				3362DFC21472FC1200C57915 /* UIKit.framework in Frameworks */,
 				3362DFC41472FC1200C57915 /* Foundation.framework in Frameworks */,
 				3362DFC61472FC1200C57915 /* CoreGraphics.framework in Frameworks */,
@@ -62,6 +71,9 @@
 		3362DFC01472FC1200C57915 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3362DFDC1472FD9500C57915 /* GLKit.framework */,
+				3362DFDA1472FD8E00C57915 /* OpenGLES.framework */,
+				3362DFD81472FD8500C57915 /* QuartzCore.framework */,
 				3362DFC11472FC1200C57915 /* UIKit.framework */,
 				3362DFC31472FC1200C57915 /* Foundation.framework */,
 				3362DFC51472FC1200C57915 /* CoreGraphics.framework */,

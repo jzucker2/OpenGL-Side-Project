@@ -16,6 +16,14 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    // customization for OpenGL
+    EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    GLKView *view = [[GLKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    view.context = context;
+    view.delegate = self;
+    [self.window addSubview:view];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -58,6 +66,14 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+#pragma mark - GLKViewDelegate
+
+- (void) glkView:(GLKView *)view drawInRect:(CGRect)rect
+{
+    glClearColor(1.0, 0.0, 0.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
 }
 
 @end
