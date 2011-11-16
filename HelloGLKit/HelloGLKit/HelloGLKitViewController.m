@@ -8,6 +8,8 @@
 
 #import "HelloGLKitViewController.h"
 
+#define ARC4RANDOM_MAX      0x100000000
+
 typedef struct
 {
     float Position[3];
@@ -28,6 +30,8 @@ const GLubyte Indices[] = {
 
 @interface HelloGLKitViewController () {
     float _curRed;
+    float _curBlue;
+    float _curGreen;
     BOOL _increasing;
     GLuint _vertexBuffer;
     GLuint _indexBuffer;
@@ -135,7 +139,8 @@ const GLubyte Indices[] = {
 - (void) glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
     
-    glClearColor(_curRed, 0.0, 0.0, 1.0);
+    //glClearColor(_curRed, 0.0, 0.0, 1.0);
+    glClearColor(_curRed, _curGreen, _curBlue, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
     [self.effect prepareToDraw];
@@ -171,6 +176,13 @@ const GLubyte Indices[] = {
         _curRed = 0.0;
         _increasing = YES;
     }
+    
+    _curBlue = ((float)arc4random() / ARC4RANDOM_MAX);
+    _curGreen = ((float)arc4random() / ARC4RANDOM_MAX);
+    
+    //double val = ((double)arc4random() / ARC4RANDOM_MAX);
+    
+    NSLog(@"R:%f, G:%f, B:%f", _curRed, _curGreen, _curBlue);
     
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 4.0f, 10.0f);
