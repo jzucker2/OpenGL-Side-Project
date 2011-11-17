@@ -18,7 +18,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        NSLog(@"motion calculator init");
+        //NSLog(@"motion calculator init");
         [self setUpMotionManager];
         flashRateArray = [[NSMutableArray alloc] init];
     }
@@ -38,7 +38,7 @@
 
 - (void) setUpMotionManager
 {
-    NSLog(@"set up motion manager");
+    //NSLog(@"set up motion manager");
     motionManager = [[CMMotionManager alloc] init];
     // ensure data is available
     if (!motionManager.isDeviceMotionAvailable) {
