@@ -256,7 +256,7 @@ const GLubyte Indices[] = {
     _rotation += 90 * self.timeSinceLastUpdate;
     //modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0, 0, 1);
     //modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, motionCalculator.motionManager.deviceMotion.userAcceleration.x, motionCalculator.motionManager.deviceMotion.userAcceleration.y, motionCalculator.motionManager.deviceMotion.userAcceleration.z);
-    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, _curX, _curY, _curZ);
+    //modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, _curX, _curY, _curZ);
     //modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 1, 1, 1);
     
     self.effect.transform.modelviewMatrix = modelViewMatrix;
