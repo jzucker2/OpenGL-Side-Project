@@ -228,6 +228,7 @@ const GLubyte Indices[] = {
     _rotation += 90 * self.timeSinceLastUpdate;
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0, 0, 1);
     self.effect.transform.modelviewMatrix = modelViewMatrix;
+    
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
