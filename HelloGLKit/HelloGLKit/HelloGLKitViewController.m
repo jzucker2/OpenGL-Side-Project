@@ -32,6 +32,9 @@ const GLubyte Indices[] = {
     float _curRed;
     float _curBlue;
     float _curGreen;
+    float _curX;
+    float _curY;
+    float _curZ;
     BOOL _increasing;
     GLuint _vertexBuffer;
     GLuint _indexBuffer;
@@ -187,6 +190,31 @@ const GLubyte Indices[] = {
         //NSLog(@"increase background change time");
         timeSinceBackgroundChange += self.timeSinceLastUpdate;
     }
+    
+    NSLog(@"_cur(x,y,z) = (%f, %f, %f)", _curX, _curY, _curZ);
+    //self.view.bounds.size.width
+    NSLog(@"width:%f, height:%f", self.view.bounds.size.width, self.view.bounds.size.height);
+    if (_curX < self.view.bounds.size.width) {
+        _curX -= self.motionCalculator.motionManager.deviceMotion.userAcceleration.x;
+    }
+    else
+    {
+        //_curX -= self.motionCalculator.motionManager.deviceMotion.userAcceleration.x;
+        NSLog(@"do nothing");
+    }
+    if (_curY < self.view.bounds.size.height) {
+        _curY -= self.motionCalculator.motionManager.deviceMotion.userAcceleration.y;
+    }
+    else
+    {
+        //_curY -= self.motionCalculator.motionManager.deviceMotion.userAcceleration.y;
+        NSLog(@"do nothing");
+    }
+    //_curX += self.motionCalculator.motionManager.deviceMotion.userAcceleration.x;
+    //_curY += self.motionCalculator.motionManager.deviceMotion.userAcceleration.y;
+    //_curZ += self.motionCalculator.motionManager.deviceMotion.userAcceleration.z;
+
+    
     //timeSinceBackgroundChange += self.timeSinceLastUpdate;
     //double flashRate = [self.motionCalculator processData];
     
@@ -226,8 +254,9 @@ const GLubyte Indices[] = {
     
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -6.0f);
     _rotation += 90 * self.timeSinceLastUpdate;
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0, 0, 1);
-    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, motionCalculator.motionManager.deviceMotion.userAcceleration.x, motionCalculator.motionManager.deviceMotion.userAcceleration.y, motionCalculator.motionManager.deviceMotion.userAcceleration.z);
+    //modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0, 0, 1);
+    //modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, motionCalculator.motionManager.deviceMotion.userAcceleration.x, motionCalculator.motionManager.deviceMotion.userAcceleration.y, motionCalculator.motionManager.deviceMotion.userAcceleration.z);
+    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, _curX, _curY, _curZ);
     //modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 1, 1, 1);
     
     self.effect.transform.modelviewMatrix = modelViewMatrix;
