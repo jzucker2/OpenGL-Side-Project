@@ -172,11 +172,11 @@ const GLubyte Indices[] = {
 - (void) update
 {
     double flashRate = [self.motionCalculator processData];
-    NSLog(@"flashRate is %f", flashRate);
-    NSLog(@"timeSinceBackgroundChange is %f", timeSinceBackgroundChange);
-    NSLog(@"timeSinceLastUpdate is %f", self.timeSinceLastUpdate);
+    //NSLog(@"flashRate is %f", flashRate);
+    //NSLog(@"timeSinceBackgroundChange is %f", timeSinceBackgroundChange);
+    //NSLog(@"timeSinceLastUpdate is %f", self.timeSinceLastUpdate);
     if (flashRate <= timeSinceBackgroundChange && flashRate != 0) {
-        NSLog(@"generate random colors for background");
+        //NSLog(@"generate random colors for background");
         _curBlue = ((float)arc4random() / ARC4RANDOM_MAX);
         _curGreen = ((float)arc4random() / ARC4RANDOM_MAX);
         _curRed = ((float)arc4random() / ARC4RANDOM_MAX);
@@ -184,7 +184,7 @@ const GLubyte Indices[] = {
     }
     else
     {
-        NSLog(@"increase background change time");
+        //NSLog(@"increase background change time");
         timeSinceBackgroundChange += self.timeSinceLastUpdate;
     }
     //timeSinceBackgroundChange += self.timeSinceLastUpdate;
@@ -227,7 +227,14 @@ const GLubyte Indices[] = {
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -6.0f);
     _rotation += 90 * self.timeSinceLastUpdate;
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0, 0, 1);
+    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, motionCalculator.motionManager.deviceMotion.userAcceleration.x, motionCalculator.motionManager.deviceMotion.userAcceleration.y, motionCalculator.motionManager.deviceMotion.userAcceleration.z);
+    //modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 1, 1, 1);
+    
     self.effect.transform.modelviewMatrix = modelViewMatrix;
+    
+    //modelViewMatrixTransform = GLKMatrix4Translate(mod, <#float tx#>, <#float ty#>, <#float tz#>)
+    
+    
     
 }
 
