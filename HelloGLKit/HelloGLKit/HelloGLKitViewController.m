@@ -45,12 +45,14 @@ const GLubyte Indices[] = {
 
 @synthesize context = _context;
 @synthesize effect = _effect;
+@synthesize motionCalculator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        //motionCalculator = [[MotionCalculator alloc] init];
     }
     return self;
 }
@@ -101,6 +103,8 @@ const GLubyte Indices[] = {
 {
     [super viewDidLoad];
     
+    timeSinceBackgroundChange = 0;
+    
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
     if (!self.context) {
@@ -109,6 +113,10 @@ const GLubyte Indices[] = {
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
+    //[self setPreferredFramesPerSecond:4];
+    
+    //[motionCalculator setUpMotionManager];
+    self.motionCalculator = [[MotionCalculator alloc] init];
     
     [self setupGL];
 }
@@ -120,12 +128,15 @@ const GLubyte Indices[] = {
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     
+    
     [self tearDownGL];
     
     if ([EAGLContext currentContext] == self.context) {
         [EAGLContext setCurrentContext:nil];
     }
     self.context = nil;
+    
+    [motionCalculator stopMotionManager];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -160,6 +171,29 @@ const GLubyte Indices[] = {
 
 - (void) update
 {
+    double flashRate = [self.motionCalculator processData];
+    NSLog(@"flashRate is %f", flashRate);
+    NSLog(@"timeSinceBackgroundChange is %f", timeSinceBackgroundChange);
+    NSLog(@"timeSinceLastUpdate is %f", self.timeSinceLastUpdate);
+    if (flashRate <= timeSinceBackgroundChange && flashRate != 0) {
+        NSLog(@"generate random colors for background");
+        _curBlue = ((float)arc4random() / ARC4RANDOM_MAX);
+        _curGreen = ((float)arc4random() / ARC4RANDOM_MAX);
+        _curRed = ((float)arc4random() / ARC4RANDOM_MAX);
+        timeSinceBackgroundChange = 0;
+    }
+    else
+    {
+        NSLog(@"increase background change time");
+        timeSinceBackgroundChange += self.timeSinceLastUpdate;
+    }
+    //timeSinceBackgroundChange += self.timeSinceLastUpdate;
+    //double flashRate = [self.motionCalculator processData];
+    
+    /*
+    NSLog(@"flashRate is %f", flashRate);
+    NSLog(@"timeSinceLastUpdate is %f", self.timeSinceLastUpdate);
+    
     if (_increasing)
     {
         _curRed += 1.0 * self.timeSinceLastUpdate;
@@ -177,12 +211,14 @@ const GLubyte Indices[] = {
         _increasing = YES;
     }
     
+    
     _curBlue = ((float)arc4random() / ARC4RANDOM_MAX);
     _curGreen = ((float)arc4random() / ARC4RANDOM_MAX);
     
     //double val = ((double)arc4random() / ARC4RANDOM_MAX);
     
     NSLog(@"R:%f, G:%f, B:%f", _curRed, _curGreen, _curBlue);
+     */
     
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 4.0f, 10.0f);

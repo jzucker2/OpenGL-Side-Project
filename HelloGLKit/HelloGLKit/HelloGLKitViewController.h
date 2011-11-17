@@ -7,7 +7,13 @@
 //
 
 #import <GLKit/GLKit.h>
+#import "MotionCalculator.h"
 
 @interface HelloGLKitViewController : GLKViewController
+{
+    MotionCalculator *motionCalculator;
+    double timeSinceBackgroundChange;
+}
+@property (nonatomic, retain) MotionCalculator *motionCalculator;
 
 @end

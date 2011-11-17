@@ -18,6 +18,8 @@
 		3362DFDD1472FD9500C57915 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362DFDC1472FD9500C57915 /* GLKit.framework */; };
 		3362DFE014730C5F00C57915 /* HelloGLKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3362DFDF14730C5F00C57915 /* HelloGLKitViewController.m */; };
 		3362DFE414730F7E00C57915 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3362DFE314730F7E00C57915 /* MainStoryboard.storyboard */; };
+		33CB12C7147489BB00EBC7D0 /* MotionCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB12C6147489BB00EBC7D0 /* MotionCalculator.m */; };
+		33CB12CA147489C700EBC7D0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CB12C9147489C700EBC7D0 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,9 @@
 		3362DFDE14730C5F00C57915 /* HelloGLKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloGLKitViewController.h; sourceTree = "<group>"; };
 		3362DFDF14730C5F00C57915 /* HelloGLKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloGLKitViewController.m; sourceTree = "<group>"; };
 		3362DFE314730F7E00C57915 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		33CB12C5147489BB00EBC7D0 /* MotionCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionCalculator.h; sourceTree = "<group>"; };
+		33CB12C6147489BB00EBC7D0 /* MotionCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionCalculator.m; sourceTree = "<group>"; };
+		33CB12C9147489C700EBC7D0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33CB12CA147489C700EBC7D0 /* CoreMotion.framework in Frameworks */,
 				3362DFDD1472FD9500C57915 /* GLKit.framework in Frameworks */,
 				3362DFDB1472FD8E00C57915 /* OpenGLES.framework in Frameworks */,
 				3362DFD91472FD8500C57915 /* QuartzCore.framework in Frameworks */,
@@ -76,6 +82,7 @@
 		3362DFC01472FC1200C57915 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33CB12C9147489C700EBC7D0 /* CoreMotion.framework */,
 				3362DFDC1472FD9500C57915 /* GLKit.framework */,
 				3362DFDA1472FD8E00C57915 /* OpenGLES.framework */,
 				3362DFD81472FD8500C57915 /* QuartzCore.framework */,
@@ -89,6 +96,7 @@
 		3362DFC71472FC1200C57915 /* HelloGLKit */ = {
 			isa = PBXGroup;
 			children = (
+				33CB12CB147489D300EBC7D0 /* Motion Calculator */,
 				3362DFE314730F7E00C57915 /* MainStoryboard.storyboard */,
 				3362DFE214730C6900C57915 /* App Delegate */,
 				3362DFE114730C6500C57915 /* Hello GLKit View */,
@@ -124,6 +132,15 @@
 				3362DFD11472FC1200C57915 /* AppDelegate.m */,
 			);
 			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		33CB12CB147489D300EBC7D0 /* Motion Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				33CB12C5147489BB00EBC7D0 /* MotionCalculator.h */,
+				33CB12C6147489BB00EBC7D0 /* MotionCalculator.m */,
+			);
+			name = "Motion Calculator";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +209,7 @@
 				3362DFCE1472FC1200C57915 /* main.m in Sources */,
 				3362DFD21472FC1200C57915 /* AppDelegate.m in Sources */,
 				3362DFE014730C5F00C57915 /* HelloGLKitViewController.m in Sources */,
+				33CB12C7147489BB00EBC7D0 /* MotionCalculator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +313,7 @@
 				3362DFD71472FC1200C57915 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
