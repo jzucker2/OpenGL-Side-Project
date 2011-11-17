@@ -249,7 +249,16 @@ const GLubyte Indices[] = {
     NSLog(@"++++++++++++++++++++++++++++");
      */
 
-    self.paused = !self.paused;
+    if (self.paused == YES) {
+        self.paused = NO;
+        NSLog(@"hide menu");
+    }
+    else
+    {
+        NSLog(@"display menu");
+        self.paused = YES;
+    }
+    //self.paused = !self.paused;
 }
 
 @end
