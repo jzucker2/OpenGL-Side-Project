@@ -240,12 +240,14 @@ const GLubyte Indices[] = {
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    /*
     NSLog(@"++++++++++++++++++++++++++++");
     NSLog(@"timeSinceLastUpdate: %f", self.timeSinceLastUpdate);
     NSLog(@"timeSinceLastDraw: %f", self.timeSinceLastDraw);
     NSLog(@"timeSinceFirstResume: %f", self.timeSinceFirstResume);
     NSLog(@"timeSinceLastResume: %f", self.timeSinceLastResume);
     NSLog(@"++++++++++++++++++++++++++++");
+     */
 
     self.paused = !self.paused;
 }
